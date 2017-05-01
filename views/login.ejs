@@ -1,0 +1,25 @@
+<%- include('F:/somu/project/app/views/layout.ejs') %>
+<head>
+    <title>Login</title>
+</head>
+
+<body><h1>Welcome Prove UserSelf!</h1></body>
+
+<form method="post" action="api/login" style="border: solid;color:#2d6987;width: 400px;height: 280px;margin-left: 350px">
+
+    <label style="margin-left: 40px"><h3 style="margin-left: 18px">Enter Email:</h3></label>
+    <input  style="margin-left: 18px;width: 250px;;height: 20px" type="text" name="email" >
+    <br>
+</br>
+    <h3 style="margin-left: 18px">Enter Password:</h3>
+    <input style="margin-left: 18px; height: 20px;width: 250PX" type="password" name="password"></br>
+</br>
+
+    <input type="submit" value="Login" style="background-color:#a9dba9; margin-left: 18px;font-size: 18px"><br>
+    <br>
+
+</form>
+<br>
+
+<input style="margin-left: 350px;width: auto;height: 20px;background-color: #a9dba9" type="button" value="New User SignUp" onclick="window.location.href='/register'">
+

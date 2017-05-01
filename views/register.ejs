@@ -1,0 +1,96 @@
+<%- include('F:/somu/project/app/views/layout.ejs') %>
+
+<head>
+
+    <title>Login</title>
+
+</head>
+<body ><h1 style="margin-left: 450px">Welcome Applicant Prove UserSelf!</h1></body>
+
+<form method="post" action="api/register" style="border: solid;color:#2d6987;width: 480px;height: 400px;margin-left: 450px" onsubmit="return checkForm((this))">
+    <label><h3 style="margin-left: 20px">Enter Email:</h3></label>
+
+    <input type="text" name="email" style="margin-left: 20px">
+    <br>
+
+    <label ><h3 style="margin-left: 20px">Choose User Name:</h3></label>
+
+    <input  type="text" name="username" style="margin-left: 20px">
+    </br>
+    <div><h3 style="margin-left: 20px">Enter Password:</h3></div>
+    <input type="password" name="password" style="margin-left: 20px;"></br>
+    </br>
+    <div><h3 style= "margin-left: 20px" >Enter Password:</h3></div>
+    <input type="password" name="repassword" style="margin-left: 20px;"></br>
+    </br>
+    <input type="submit" value="Login" style="background-color: #a9dba9;margin-left: 20px">
+
+</form>
+
+<input type="button" value="Already Have An Account" style="margin-left: 450px;margin-top:20px;background-color: #a9dba9" onclick="window.location.href='/login'">
+
+<script type="text/javascript">
+
+    function checkForm(form)
+    {
+        re=/@/;
+        if(!re.test(form.email.value)){
+            alert("Email format is not valid");
+            form.email.focus();
+            return false;
+        }
+
+        if(form.username.value == "") {
+            alert("Error: Username cannot be blank!");
+            form.username.focus();
+            return false;
+        }
+        re = /^\w+$!*()/;
+        if(!re.test(form.username.value)) {
+            alert("Error: Username must contain only letters, numbers and underscores!");
+            form.username.focus();
+            return false;
+        }
+
+        if(form.password.value != "" && form.password.value == form.repassword.value) {
+            if(form.password.value.length < 6) {
+                alert("Error: Password must contain atleast six characters!");
+                form.password.focus();
+                return false;
+            }
+            if(form.password.value == form.username.value) {
+                alert("Error: Password must be different from Username!");
+                form.password.focus();
+                return false;
+            }
+            re = /[0-9]/;
+            if(!re.test(form.password.value)) {
+                alert("Error: password must contain at least one number (0-9)!");
+                form.password.focus();
+                return false;
+            }
+            re = /[a-z]/;
+            if(!re.test(form.password.value)) {
+                alert("Error: password must contain at least one lowercase letter (a-z)!");
+                form.password.focus();
+                return false;
+            }
+            re = /[A-Z]/;
+            if(!re.test(form.password.value)) {
+                alert("Error: password must contain at least one uppercase letter (A-Z)!");
+                form.password.focus();
+                return false;
+            }
+        } else {
+            alert("Error: Please check that you've entered and confirmed your password!");
+            form.password.focus();
+            return false;
+        }
+
+        alert("You entered a valid password: " + form.password.value);
+        return true;
+    }
+
+</script>
+
+</html>

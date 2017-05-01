@@ -1,0 +1,55 @@
+<%- include('F:/somu/project/app/views/layout.ejs') %>
+<br>
+<div>
+    <input style="background-color: #a9dba9;font-size: 20px"  type="button" value="Apply" onclick="applyjobs((this))">
+</div>
+
+<div style="border: solid ; margin-top: 20px; border-top-width: 10px; border-top-color:#00B7FF; height: auto; width: auto" name="Company">
+    <h3><label style="color: #0e90d2">CompanyName:</label><%= title.CompanyName%>
+            <label style="margin-left: 60px;color: #0e90d2">JobID</label> <%= title.JobID %>
+
+        <label style="color: #0e90d2;margin-left: 60px" >SponsorShip:</label><%= title.SponsorShip%><br>
+   <br> <label style="color: #0e90d2">Role:</label><%= title.Title%>
+        <label style="color: #0e90d2;margin-left: 60px" > LastDate</label> <%= title.LastDate%><br></h3>
+
+    </div>
+    <br>
+<div style="border: solid; color: #2d6987; width: auto;height: auto " name="Jobdetails" >
+
+    <h3>Education: <%= title.Education%></h3>
+    <h3>Major: <%= title.Major%></h3>
+    <h3 style="color: red">Required: <%= title.Experienceneeded%></h3>
+    <h3 style="color: red">Needed:<%= title.RequiredQualification%></h3>
+    <h3>Skills: <%= title.Skills%></h3>
+    <h3>Duties: <%= title.Duties %></h3>
+    <h3 style="color: #62c462"> What Makes You Special: <%= title.AddedQualification%></h3>
+
+</div>
+<br>
+
+    <div style="border: solid; color: #2d6987; width: auto;height:auto " name="Jobdetails" >
+        <label style="color: #0e90d2"><h3>Job Posted By</h3></label>
+        <h3><label style="color: #0e90d2">Name:</label>  <%= title.PosterFirstName %> <label style="margin-left: 40px;color: #0e90d2">Mail:</label> <%= title.Mail %> </h3>
+    </div>
+
+<div>
+    <input style="background-color: #a9dba9;font-size: 20px"  type="button" value="Apply" onclick="applyjobs((this))">
+</div>
+
+ <script>
+function applyjobs(element) {
+    debugger;
+
+    var sta = sessionStorage.getItem("email");
+    var sendto = sta + "/"+ "<%= title.Mail%>";
+
+    if(sta == "" || sta != sta || sta==null || sta==undefined){
+
+       window.location.href="/login";
+   }
+   else {
+
+       window.location.href="/api/applicants/" + sendto ;
+   }
+}
+ </script>

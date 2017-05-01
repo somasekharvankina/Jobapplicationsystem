@@ -1,0 +1,16 @@
+
+<%- include('F:/somu/project/app/views/layout.ejs') %>
+
+<div>
+    <label style="margin-left: 50px;color: #0e90d2" ><h3>Do you need Clarification?</h3></label>
+     <form method="post" role="form" action="api/questions/ques" style="border: solid;color: #0e90d2 ;width:450px;height: 120px; margin-top: 30px;margin-left: 20px" >
+
+         <input type="text" style="width: 150px;margin-left:20px;height:20px;margin-top: 20px" name="UserName" placeholder="name"><br>
+         <br>
+         <input  name="Questions" type="text" placeholder="questions" style="width:250px;height: 25px;margin-left: 20px ">
+         <input type="submit" value="Post" >
+
+     </form>
+
+</div>
+<input type="button"  style="margin-top: 20px;background-color: #a9dba9" value="View All questions" onclick="window.location.href='/api/questions/ques'">

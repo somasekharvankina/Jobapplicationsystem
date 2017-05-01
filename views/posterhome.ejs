@@ -1,0 +1,16 @@
+<%- include('F:/somu/project/app/views/layout.ejs') %>
+
+
+
+     <%
+ var i ;
+     for(i=0; i< title.length ; i++){
+     %>
+<div style="border:solid;width:auto;height:auto;pcolor: #1a1a1a;">
+     <a  href="Hello/<%= title[i].id %> " > <h2> <%= title[i].Title %></h2> </a> <%= title[i].CompanyName%>,<%= title[i].Experienceneeded %>
+     <label style="width: auto;height:auto;border:solid; color: #4bb1cf"></label>
+</div>
+     <%
+     }
+     %>
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title><%= title %></title>
+
+</head>
+
+<body>
+<div><h1><%=title%>-Tell me About Your Vacant Position</h1></div>
+
+<form action="/api/posters" method="post" role="form">
+
+    <div><label style="color: #00B7FF"> Company Name</label>
+        <input type="text" name="CompanyName" class="form-control"   placeholder="Company Name" required>
+        <label style="margin-left: 80px">JobID</label>
+        <input type="text" name="JobID" class="form-control" placeholder="JobID" required>
+        <label style="margin-left: 80px">Title</label>
+        <input type="text" name="Title" class="form-control" placeholder="Title" required>
+       <!-- <label style="margin-left:100px " > PostedOn </label>
+        <input type="date" placeholder="PostedOn" name="PostedOn" > -->
+        <label style="margin-left:100px " > LastDate </label>
+        <input type="date" placeholder="LastDate" name="LastDate" required><br>
+        <br>
+        <label style="margin-left: 30px">Type</label>
+        <input type="text" name="Jobtype" class="form-control" placeholder="Full/Part-time" required>
+        <label style="margin-left: 100px">SponsorShip</label>
+        <select name="SponsorShip" required>
+            <option value="Null"> </option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label style="margin-left: 120px">Location</label>
+        <input type="text" name="City" class="form-control" placeholder="City" required>
+        <label style="margin-left: 80px">Country</label>
+        <input type="text" name="Country" class="form-control" placeholder="Country" required>
+    </div><br>
+
+    <div><label style ="margin-left: auto" >Education Qualifications</label><br>
+        <br>
+        <label style="margin-left: 40px">Education</label>
+        <input type="text" name="Education" class="form-control" placeholder="Bachelor/Master" >
+        <label style="margin-left: 100px">Major</label>
+        <input type="text" placeholder="Major" class="form-control" name="Major">
+        <label style="margin-left: 150px">MinimumGPA</label>
+        <input type="text" placeholder="MinimumGPA" name="MinimumGPA">
+        <label style="margin-left: 80px">Graduated</label>
+        <select name="Graduated">
+        <option value="Null"> </option>
+        <option value = "Yes">Yes</option>
+        <option value="No">No</option>
+        </select>
+    </div>
+
+    </br>
+    <div id="duties">
+        <label>Duties</label><br>
+        <input type="text" name="Duties" class="form-control" placeholder="Enter Job Responsibilites" style="width: 500px; height: 20px" required>
+        <br>
+        <input type="button" value="Add Duties" onclick="addduties((this))"><br>
+        <input type="button" flag="duties" value="Save" onclick="adddata((this))"><br>
+    </div>
+
+
+
+<br>
+    <div id="required">
+    <label >Required Qualifications</label><br>
+        <textarea name="RequiredQualification" placeholder="Enter Required Qualifications for the Job" style="width: 400px; height: 50px" required></textarea>
+        <input type="button" value="Add" onclick="addduties((this))" ><br>
+        <input type="button" value="Save" flag="Required"  click="0"  onclick="adddata((this))"><br>
+    </div>
+
+    <div id="added">
+        <label >Added Qualification</label><br>
+         <textarea  name="AddedQualification" class="form-control" placeholder="What makes him special" style="width: 400px;height: 50px;" ></textarea>
+      <input type="button" value="Add " onclick="addduties((this))">
+        <input type="button" value="Save" flag="Added" click="0" onclick="adddata((this))" >
+    </div>
+        <br>
+    <div>
+       <label style="margin-left: 0px"> Experience</label>
+       <input type="text" name="Experienceneeded" class="form-control" placeholder="2 years as Web Developer ">
+
+        <label style="margin-left: 50px" >Skills</label>
+        <textarea placeholder="Enter requires skills separated by','" name="Skills" style="width: 800px;height: 40px"></textarea>
+    </div><br>
+
+   <div>
+    <label>Posted By</label><br>
+       <br>
+       <label>First Name</label>
+       <input type="text" name="PosterFirstName" placeholder="FirstName" required>
+       <label>Last Name</label>
+       <input type="text" name="PosterLastName" placeholder="LastName">
+       <label>Role in Company</label>
+       <input type="text" name="Role" placeholder="Enter Your role" required>
+       <label>Mobile</label>
+       <input type="number" name="Mobile" placeholder="999-999-9999">
+       <label>Mail ID</label>
+       <input type="text" name="Mail" placeholder="Mail" required >
+    </div>
+    <br>
+    <br><input type="submit" name="Submit" value="Post" >
+
+</form>
+
+</body>
+
+<script type="text/javascript">
+    var x=1;
+    function addduties(element) {
+        var data =  element.parentElement.getAttribute('id');
+        var element = document.createElement("input");
+        var label = document.createElement("Label");
+//Assign different attributes to the element.
+        element.setAttribute("type", "text");
+        element.setAttribute("placeholder", "add more duties");
+        element.setAttribute("name", "Test Name");
+        element.setAttribute("style", "width:400px");
+
+// 'foobar' is the div id, where new fields are to be added
+        var newdiv = document.getElementById(data);
+//Append the element in page (in span).
+        newdiv.appendChild(label);
+        newdiv.appendChild(element);
+        }
+
+
+    function adddata(element) {
+        var dataadd = [];
+        var iddiv = element.getAttribute('flag');
+        var data = element.parentElement.getAttribute('id');
+        var searchEle = document.getElementById(data).querySelectorAll('input');
+
+        if (iddiv == duties) {
+            for (var i = 0; i < searchEle.length; i++) {
+                if (searchEle[i] != null) {
+                    dataadd += searchEle[i];
+                }
+            }
+            element.setAttribute("click","1");
+        }
+                else if (iddiv == Required) {
+                for (var i = 0; i < searchEle.length; i++) {
+                    if (searchEle[i] != null) {
+                        dataadd += searchEle[i];
+                    }
+                }
+            element.setAttribute("click","1");
+            }
+                else if (iddiv == Added) {
+                        for (var i = 0; i < searchEle.length; i++) {
+                            if (searchEle[i] != null) {
+                                dataadd += searchEle[i];
+                            }
+                        }
+            element.setAttribute("click","1");
+                    }
+
+                }
+
+
+
+</script>
+
+</html>

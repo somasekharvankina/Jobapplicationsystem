@@ -1,0 +1,45 @@
+var mongoose = require('mongoose');
+var hrq = mongoose.model('HRQuestions');
+require('../models/dbs');
+require('../models/hrquestionsdb');
+
+var sendJsonResponse = function (res,status,content) {
+    res.status(status);
+    res.json(content);
+};
+
+module.exports.hrread = function (req,res) {
+    if(req.params){
+        hrq
+            .find()
+            .exec(function (err,data) {
+                if(!data){
+                    sendJsonResponse(res,404,{"message":"No data found"});
+                }
+                else if(err){
+                    sendJsonResponse(res,404,err);
+                }
+                //sendJsonResponse(res,200,data);
+                res.render('signup',{title: data});
+            });
+    }
+    else{
+        sendJsonResponse(res,404,{"message":"Not a valid search"});
+    }
+};
+
+module.exports.hrcreate= function (req,res) {
+
+    hrq.create({
+        Question:req.body.Questions
+    },
+    function (err,data) {
+        if (err) {
+            sendJsonResponse(res, 400, err);
+        }
+        else {
+            sendJsonResponse(res, 201, data);
+            console.log("data saved");
+        }
+    });
+};

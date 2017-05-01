@@ -1,0 +1,43 @@
+<%- include('F:/somu/project/app/views/layout.ejs') %>
+
+<html ng-app = "">
+  <div id="findform">
+    <label style="margin-left: 200px; margin-top: 20px"><h1>Find Jobs!</h1></label>
+    <input type="text" style="margin-left: 150px; width: 400px" placeholder="Enter Title as Software Developer" id="SearchData" value="">
+    <input type="submit" name="Search" value="Search"  onclick="serachdata((this))" >
+  </div>
+
+  <div>
+      <input type="hidden" name="email123" value="<%=title.email%>"></div>
+
+
+<script>
+function serachdata(element) {
+debugger;
+    var s = element.parentElement.getAttribute('id');
+    var Ele = document.getElementById(s).querySelectorAll("input[type=text]")[0];
+    var d = Ele.value;
+     if (sessionStorage.getItem("email") == "" && d =="" ){
+        window.location.href="api/posters/search";
+    }
+    if (d  == "" && sessionStorage.getItem("email")!= "" ) {
+        window.location.href = "posters/search";
+    }
+     else if (d != undefined && d != null && d!= "") {
+        window.location.href = "api/posters/" + d;
+    }
+
+
+
+}
+
+window.onload = function () {
+
+    sessionStorage.setItem("email",document.getElementsByName("email123")[0].value);
+    var sta = sessionStorage.getItem("email");
+}
+
+</script>
+
+
+</html>

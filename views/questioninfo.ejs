@@ -1,0 +1,24 @@
+
+<%- include('F:/somu/project/app/views/layout.ejs') %>
+<br>
+
+
+<div>
+    <input type="button" value="Post Question" onclick="window.location.href='/questionsview'">
+</div>
+<br>
+<div style="border: solid" >
+    <%
+    var i;
+    for(i=0;i<title.length; i++){%>
+    <h4><label style="color:#1f6377;margin-left:18px;font-size: 18px" ><%= title[i].UserName%> : </label> <%= title[i].Questions%></h4>
+
+    <%
+    }
+    %>
+
+</div>
+<br>
+<div>
+    <input type="button" value="Reply" onclick="window.location.href='/questionsview'">
+</div>
